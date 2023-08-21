@@ -37,19 +37,22 @@ const portfolioContainer = document.getElementById("portfolioContainer");
 // Fonction pour récupérer les utilisateurs
 function fetchUsers() {
   fetch("https://randomuser.me/api/?results=20")
-    .then((response) => response.json())
+    .then((response) => response.json()) //gére les opérations asynchrones
     .then((data) => {
       const users = data.results;
       displayUsers(users);
     })
+
+    //gère les éventuelles erreurs survenues pendant toute cette chaîne d'opérations asynchrones
     .catch((error) => console.error("Une erreur s'est produite : ", error));
 }
 
 // Fonction pour afficher les utilisateurs
 function displayUsers(users) {
   portfolioContainer.innerHTML = ""; // Nettoyer le contenu existant
-
-  users.forEach((user) => {
+  
+// Pour itérer à travers un tableau d'utilisateurs (users) et créer des éléments HTML pour chaque utilisateur en utilisant le DOM (Document Object Model).
+  users.forEach((user) => { 
     const userCard = document.createElement("div");
     userCard.classList.add("user-card");
 
@@ -64,8 +67,12 @@ function displayUsers(users) {
     userEmail.textContent = user.email;
 
     const userGender = document.createElement("p");
-    userGender.textContent = user.gender === "male" ? "Homme" : "Femme";
+    userGender.textContent = user.gender === "male" ? "♂️" : "♀️";
+    userGender.classList.add("user-gender"); // Ajout de la classe
 
+    // userGender.textContent = user.gender === "female" ? "♀️" ':' ;
+    
+    // userGenderIcon.classList.add(user.gender);
     userCard.appendChild(userProfilePic);
     userCard.appendChild(userName);
     userCard.appendChild(userEmail);
