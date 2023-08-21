@@ -45,7 +45,7 @@ function fetchUsers() {
 
     //gère les éventuelles erreurs survenues pendant toute cette chaîne d'opérations asynchrones
     .catch((error) => console.error("Une erreur s'est produite : ", error));
-}
+};
 
 // Fonction pour afficher les utilisateurs
 function displayUsers(users) {
